@@ -1,5 +1,7 @@
 build:
+  config:
+    DEBUG: 0
   docker:
     web: Dockerfile
 run:
-  web: uwsgi --ini uwsgi.ini --http 0:$PORT
+  web: python hackathonmentors/manage.py runserver

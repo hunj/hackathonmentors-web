@@ -16,3 +16,5 @@ RUN chown -R django /build
 
 COPY hackathonmentors /build
 COPY . /build/
+
+ARG DEBUG

@@ -1,5 +1,6 @@
 FROM python:3.8.2
 ENV PYTHONUNBUFFERED 1
+ENV DEBUG 0
 
 RUN mkdir /build
 WORKDIR /build

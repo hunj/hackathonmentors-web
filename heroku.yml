@@ -1,7 +1,10 @@
 build:
-  config:
-    DEBUG: 0
   docker:
     web: Dockerfile
-run:
-  web: python hackathonmentors/manage.py runserver
+  config:
+    DEBUG: 0
+
+release:
+  image: worker
+  command:
+    - python hackathonmentors/manage.py migrate

@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import urlparse
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -103,13 +104,15 @@ if DEBUG:
         'PORT': 3306,
     }
 else:
+    urlparse.uses_netloc.append('mysql')
+    database_url = urlparse.urlparse(os.environ.get('DATABASE_URL'))
     DATABASES['default'] = {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.environ.get('MYSQL_DATABASE', 'hackathonmentors'),
-        'USER': os.environ.get('MYSQL_USER', 'hackathonmentors_user'),
-        'PASSWORD': os.environ.get('MYSQL_PASSWORD', 'hackathonmentors_pass'),
-        'HOST': os.environ.get('DATABASE_URL'),
-        'PORT': 3306,
+        'NAME': database_url.path[1:],
+        'USER': database_url.username,
+        'PASSWORD': database_url.password,
+        'HOST': database_url.hostname,
+        'PORT': database_url.port,
     }
 
 

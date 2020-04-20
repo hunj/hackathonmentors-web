@@ -91,8 +91,10 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
+DATABASES = {}
+
+if DEBUG:
+    DATABASES['default'] = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': os.environ.get('MYSQL_DATABASE', 'hackathonmentors'),
         'USER': os.environ.get('MYSQL_USER', 'hackathonmentors_user'),
@@ -100,7 +102,16 @@ DATABASES = {
         'HOST': 'hackathonmentors_db',
         'PORT': 3306,
     }
-}
+else:
+    DATABASES['default'] = {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': os.environ.get('MYSQL_DATABASE', 'hackathonmentors'),
+        'USER': os.environ.get('MYSQL_USER', 'hackathonmentors_user'),
+        'PASSWORD': os.environ.get('MYSQL_PASSWORD', 'hackathonmentors_pass'),
+        'HOST': os.environ.get('DATABASE_URL'),
+        'PORT': 3306,
+    }
+
 
 # Authentication
 # https://django-allauth.readthedocs.io/en/latest/installation.html

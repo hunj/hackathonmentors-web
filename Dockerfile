@@ -1,6 +1,5 @@
 FROM python:3.8.2
 ENV PYTHONUNBUFFERED 1
-ENV DEBUG 0
 
 RUN mkdir /build
 WORKDIR /build
@@ -17,7 +16,5 @@ RUN chown -R django /build
 
 COPY hackathonmentors /build
 COPY . /build/
-
-ARG DEBUG
 
 CMD python build/manage.py runserver 0.0.0.0:8000

@@ -5,6 +5,6 @@ build:
     DEBUG: 0
 
 release:
-  image: worker
+  image: web
   command:
     - python hackathonmentors/manage.py migrate

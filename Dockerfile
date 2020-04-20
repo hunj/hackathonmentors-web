@@ -18,3 +18,5 @@ COPY hackathonmentors /build
 COPY . /build/
 
 ARG DEBUG
+
+CMD python build/manage.py runserver 0.0.0.0:8000
